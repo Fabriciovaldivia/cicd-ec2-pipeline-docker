@@ -1,12 +1,12 @@
-FROM node:18-alpine
+FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY app/package*.json ./
-RUN npm install
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app .
+COPY app/ .
 
-EXPOSE 3000
+EXPOSE 5000
 
-CMD ["node", "index.js"]
+CMD ["python", "app.py"]
